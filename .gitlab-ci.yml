@@ -41,6 +41,12 @@ linting:
   script:
     - yamllint .
     - ansible-lint .
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      changes:
+        compare_to: 'refs/heads/main'
+        paths:
+          - '**/*'
 
 integration:
   stage: test
@@ -59,3 +65,9 @@ integration:
     - ansible-galaxy install --force -r requirements.yml
   script:
     - MOLECULE_DISTRO=$MDISTRO molecule test
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      changes:
+        compare_to: 'refs/heads/main'
+        paths:
+          - '**/*'

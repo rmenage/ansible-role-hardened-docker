@@ -50,7 +50,7 @@ make_release() {
     gc_cmd="git-cliff"
     git_cmd="git"
   fi
-  cl_cmd="$gc_cmd --bump --unrelease --prepend $changelog_file"
+  cl_cmd="$gc_cmd --bump --unreleased --prepend $changelog_file"
   add_cf="$git_cmd add \"$changelog_file\""
   commit_cf="$git_cmd commit -m \"docs: update changelog for version up to $new_version\""
   push_cf="$git_cmd push origin"
