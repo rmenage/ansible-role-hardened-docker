@@ -1,3 +1,26 @@
+# Changelog
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+
+
+## [0.5.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/0.5.0) - 2025-12-08
+
+[6988ab8](6988ab8bb921645a9687933b268c7138e369bba7)...[acee47a](acee47a6099c08d85e007f240bcde0308802e37f)
+
+### Bug Fixes
+
+- Correct a typo in a parameter to git-cliff ([40afee2](40afee2ca6e4b4a5e3eecab61012e15c06b99730)), Closes #16
+
+erroneously used `--unrelease` instead of `--unreleased`, Merge-request-id:!14, Implements:#16
+
+### Features
+
+- Setup conventional-pre-commit as git pre-commit hook ([fd44752](fd4475221644960a613aa115bfe44200c247596e))
+- Add script to bump version, update change log and create release tag ([214490f](214490f0ffdd2634ca7ff5f56283772b1535d054)), Merge-request-id:!13, Implements:#16
+
 <!-- insertion marker -->
 ## [0.4.1](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/0.4.1) - 2025-12-03
 
