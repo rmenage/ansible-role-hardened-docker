@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [0.6.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.6.0) - 2026-01-12
+
+[c87cbaa](c87cbaa10679272d27af38af4a420e765b3b3fe7)...[5f5695f](5f5695f8d2458f5bdd0617b5a5dfa43abcee15d5)
+
+### Features
+
+- Run release-dry-run on merge event and main branch ([801b006](801b006987717aa7a4f7d69284b7394f5223fd02))
+
+### Miscellaneous Tasks
+
+- Revert "feat: run release-dry-run on merge event and main branch" ([6461b92](6461b92d270272838b37a24a51fd42d9372b4de0))
+
 ## [0.5.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/0.5.0) - 2025-12-08
 
 [6988ab8](6988ab8bb921645a9687933b268c7138e369bba7)...[acee47a](acee47a6099c08d85e007f240bcde0308802e37f)
