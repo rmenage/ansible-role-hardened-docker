@@ -8,6 +8,7 @@
 stages:
   - test
   - secret-detection
+  - release
 variables:
   # When using dind service we need to instruct docker, to talk with the
   # daemon started inside of the service. The daemon is available with
@@ -42,7 +43,9 @@ linting:
     - yamllint .
     - ansible-lint .
   rules:
-    - if: $CI_COMMIT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       changes:
         compare_to: 'refs/heads/main'
         paths:
@@ -66,8 +69,30 @@ integration:
   script:
     - MOLECULE_DISTRO=$MDISTRO molecule test
   rules:
-    - if: $CI_COMMIT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       changes:
         compare_to: 'refs/heads/main'
         paths:
           - '**/*'
+
+release-dry-run:
+  stage: release
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache bash git git-cliff
+    - echo "GITLAB_TOKEN=$CI_JOB_TOKEN" > .env
+  script:
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+    - git config --global user.name "$GITLAB_USER_NAME"
+    - git config --global --add --bool push.autoSetupRemote true
+    - git remote set-url --push origin $CI_REPOSITORY_URL
+    - ./make_release.sh plan
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      when: never

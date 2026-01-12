@@ -23,65 +23,59 @@ make_release() {
   source .env
 
   # parse arguments
-  if [ -z "$1" ]; then
+  arg="$1"
+
+  if [ -z "$arg" ]; then
     echo -e "$DOC"
     return 1
   fi
 
-  if [ "$1" = "plan" ]; then
-    plan=1
-    apply=0
-  elif [ "$1" = "apply" ]; then
-    apply=1
-    plan=0
-  fi
-
-  # Define variables and their default
-  current_branch=$(git branch --show-current)
-  new_version=$(git-cliff --bumped-version)
-  changelog_file="CHANGELOG.md"
-  if [ "$plan" == 1 ]; then
-    main_branch=$current_branch
-    gc_cmd="echo git-cliff"
+  if [ "$arg" = "plan" ]; then
     git_cmd="echo git"
-  fi
-  if [ "$apply" == 1 ]; then
-    main_branch="main"
-    gc_cmd="git-cliff"
+  elif [ "$arg" = "apply" ]; then
     git_cmd="git"
-  fi
-  cl_cmd="$gc_cmd --bump --unreleased --prepend $changelog_file"
-  add_cf="$git_cmd add \"$changelog_file\""
-  commit_cf="$git_cmd commit -m \"docs: update changelog for version up to $new_version\""
-  push_cf="$git_cmd push origin"
-  create_tag="$git_cmd tag -as \"$new_version\" -m \"new release for version $new_version\""
-  push_tag="$git_cmd push origin \"$new_version\""
-
-  # bail out if not on main branch
-  if [ "$current_branch" != "$main_branch" ]; then
-    echo "error: '$current_branch' is not '$main_branch'"
+  else
+    echo "error: invalid command: $arg"
     return 1
   fi
 
-  # update CHANGELOG
-  eval "$cl_cmd"
+  # Define variables and their default
+  current_branch=$(git branch --show-current || echo "$CI_COMMIT_REF_NAME")
+  default_branch=${CI_DEFAULT_BRANCH:-"main"}
+  new_version=$(git-cliff --bumped-version)
 
-  # create and push changelog
-  eval "$add_cf"
-  eval "$commit_cf"
-  eval "$push_cf"
-  # create and push tag
-  eval "$create_tag"
-  eval "$push_tag"
+  #Output version to a file so we can use it between jobs
+  echo "$new_version" >VERSION
 
-  # output new changelog snippet to stdout when in plan mode
-  if [ "$plan" == 1 ]; then
-    echo "---"
-    echo "will be prepended to $changelog_file:"
-    git-cliff --bump --unreleased
+  # Switch to dry-run mode if current branch is not the default
+  if [ "$current_branch" != "$default_branch" ]; then
+    echo "warning: '$current_branch' is not '$default_branch', enabling dry-run mode"
+    git_cmd="echo git"
   fi
-  echo "---"
-  echo "If this looks good, run '$0 apply' to execute the above plan"
+
+  # Update changelog
+  git-cliff --bump --unreleased --prepend CHANGELOG.md
+
+  # Commit changelog
+  $git_cmd add CHANGELOG.md
+  $git_cmd commit -m "docs: update changelog for version up to $new_version"
+  $git_cmd pull --rebase origin "$current_branch"
+  $git_cmd push -o ci.skip origin
+
+  # Create and push tag
+  $git_cmd tag -as "$new_version" -m "release for version $new_version"
+  $git_cmd push origin "$new_version"
+
+  if [ "echo git" == "$git_cmd" ]; then
+    # Output new changelog change to stdout when in plan mode
+    echo "---"
+    echo "changes to CHANGELOG.md:"
+    git --no-pager diff -U1 CHANGELOG.md
+    echo "---"
+    echo "If this looks good, run '$0 apply' to execute the above plan"
+    # Since this is dry-run mode, revert the change to the file
+    git checkout HEAD -- CHANGELOG.md
+  fi
   return 0
 }
 
