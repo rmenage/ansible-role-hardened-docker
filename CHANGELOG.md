@@ -12,11 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Features
 
-- Run release-dry-run on merge event and main branch ([801b006](801b006987717aa7a4f7d69284b7394f5223fd02))
-
-### Miscellaneous Tasks
-
-- Revert "feat: run release-dry-run on merge event and main branch" ([6461b92](6461b92d270272838b37a24a51fd42d9372b4de0))
+- Add Gitlab job to dry-run a release, improve release script and changelog updates ([2c5bb46e](2c5bb46e07e8cb0385a85b7c64684d62a70d9607))
 
 ## [0.5.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/0.5.0) - 2025-12-08
 
