@@ -47,11 +47,19 @@ Then, install python dependencies:
 ```
 pip install -r requirements.txt
 ```
-Next, install the Ansible dependencies
+
+Next, create a local `ansible.cfg` configuration file with a default section:
+```
+[defaults]
+
+roles_path = ./.ansible/roles/
+collections_path =./.ansible/collections/
+```
+
+You can now install the Ansible dependencies
 ```
 ansible-galaxy install -r requirements.yml
 ```
-
 ## Setting up the git hooks
 
 Given that this project is YAML heavy, you should make sure you run `yamllint` and `ansible-lint` before committing any changes. That's what git hooks enables.
