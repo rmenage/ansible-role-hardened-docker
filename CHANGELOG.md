@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.6.1](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.6.1) - 2026-02-05
 
+[d3b9c0f](d3b9c0f0082379df541f2621bb452e04836e37b8)...[25d966a](25d966a2dacaa4496c8d90aae08dac4990349018)
+
+### Miscellaneous Tasks
+
+- Remove redundant configuration file and un-version ansible configuration file ([ff93a3c](ff93a3cf27419795d363e2dc3492db01448c903e))
+- Unskip chores commit from changelog automated updates ([25d966a](25d966a2dacaa4496c8d90aae08dac4990349018))
+
+### Chore
+
+- Update dependency ansible to >=13.3.0,<13.4.0 ([7e2488a](7e2488a34f930690575af385240beb219d3eb19b))
+
+## [0.6.1](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.6.1) - 2026-02-05
+
 [d3b9c0f](d3b9c0f0082379df541f2621bb452e04836e37b8)...[6c3d77a](6c3d77a3ae716ef61997d15afa8b6021b5cc1a23)
 
 ### Miscellaneous Tasks
