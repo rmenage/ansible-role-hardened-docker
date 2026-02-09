@@ -53,6 +53,16 @@ make_release() {
     git_cmd="echo git"
   fi
 
+  git_status=$(git status --short)
+  if [[ -n $git_status ]]; then
+    if [ "echo git" == "$git_cmd" ]; then
+      echo "warning: There are uncommmited files, exiting"
+    else
+      echo "error: There are uncommmited files, exiting"
+      return 1
+    fi
+  fi
+
   # Update changelog
   git-cliff --bump --unreleased --prepend CHANGELOG.md
 
