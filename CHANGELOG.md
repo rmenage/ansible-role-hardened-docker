@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [0.7.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.7.0) - 2026-02-27
+
+[6952c5e](6952c5e3ab26807c8c90801dc531c7a6ab5b536a)...[3b2e87a](3b2e87ab67d62e9789127eecfbe2c47a634f06df)
+
+### Features
+
+- Switch to Debian 12, 13, Centos Stream 9 and 10 with my own images and improve README ([a33025f](a33025f09d6240ad3fd6196d142e6e8bdefdac6b))
+
+### Miscellaneous Tasks
+
+- Fix manually redundant section in changelog ([3049cd3](3049cd3e2d496953b72c00500c2260f7a2fbe78e))
+- Prevent CHANGELOG.md to be updated if they are uncommitted changes ([a156f14](a156f14ac0c83f5085206c74d7c024145f526bcd))
+
 ## [0.6.1](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.6.1) - 2026-02-05
 
 [d3b9c0f](d3b9c0f0082379df541f2621bb452e04836e37b8)...[25d966a](25d966a2dacaa4496c8d90aae08dac4990349018)
