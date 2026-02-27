@@ -78,6 +78,8 @@ integration:
         compare_to: 'refs/heads/main'
         paths:
           - '**/*'
+    - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
 
 release-dry-run:
   stage: release
