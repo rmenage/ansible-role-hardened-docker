@@ -10,12 +10,14 @@ galaxy_info:
   issue_tracker_url: https://gitlab.com/rmenage/ansible-role-hardened-docker/-/issues
   min_ansible_version: 2.15.1
   platforms:
-    - name: Ubuntu
+    - name: Debian
       versions:
-        - noble
-    - name: Rocky
+        - "bookworm"
+        - "trixie"
+    - name: EL
       versions:
-        - all
+        - "9"
+        - "10"
   galaxy_tags:
     - web
     - system
