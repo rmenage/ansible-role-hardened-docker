@@ -66,8 +66,13 @@ make_release() {
   # Update changelog
   git-cliff --bump --unreleased --prepend CHANGELOG.md
 
-  # Commit changelog
-  $git_cmd add CHANGELOG.md
+  # Update README to include version if we do it for real
+  if [ "git" == "$git_cmd" ]; then
+    ./generate_readme.sh
+  fi
+
+  # Commit changelog and README
+  $git_cmd add CHANGELOG.md README.md
   $git_cmd commit -m "docs: update changelog for version up to $new_version"
   $git_cmd pull --rebase origin "$current_branch"
   $git_cmd push -o ci.skip origin
