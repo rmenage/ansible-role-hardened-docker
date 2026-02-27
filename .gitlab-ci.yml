@@ -56,8 +56,10 @@ integration:
   image: docker:latest
   parallel:
     matrix:
-      - MDISTRO: ubuntu2404
-      - MDISTRO: rockylinux9
+      - MDISTRO: debian12
+      - MDISTRO: debian13
+      - MDISTRO: centos-stream9
+      - MDISTRO: centos-stream10
   services:
     - docker:dind
   before_script:
