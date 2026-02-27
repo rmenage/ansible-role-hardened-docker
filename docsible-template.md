@@ -16,16 +16,16 @@
 | Users                | {{ role.docsible.users }} |
 {%- endif %}
 {%- if role.docsible.dt_dev %}
-| Date dev             | {{ role.docsible.dt_dev }} |
+| Date dev:             | {{ role.docsible.dt_dev }} |
 {%- endif %}
 {%- if role.docsible.dt_prod %}
-| Date prod            | {{ role.docsible.dt_prod }} |
+| Date prod:            | {{ role.docsible.dt_prod }} |
 {%- endif %}
 {%- if role.docsible.dt_update %}
-| Readme update        | {{ role.docsible.dt_update }} |
+| Readme update:        | {{ role.docsible.dt_update }} |
 {%- endif %}
 {%- if role.docsible.version %}
-| Version              | {{ role.docsible.version }} |
+| Version:              | {{ role.docsible.version }} |
 {%- endif %}
 {%- if role.docsible.time_saving %}
 | Time Saving          | {{ role.docsible.time_saving }} |
