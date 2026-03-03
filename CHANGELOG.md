@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [0.8.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.8.0) - 2026-03-03
+
+[6e063ed](6e063ed68e554ef1046a40fe5544a26433ce0223)...[5d760b1](5d760b1b55fc95ec1fe24e26bc2b3b21bcae7102)
+
+### Features
+
+- Add README generation script and use it in release script ([2a7f9da](2a7f9da5328870f9191c8b4e945f8aa89486b7f8))
+
+### Miscellaneous Tasks
+
+- Make integration tests run on main branch if triggered manually from web ([eedbd9d](eedbd9de307238329280d54cf61fa7f56d988b2f))
+
+### Chore
+
+- Update dependency conventional-pre-commit to >=4.4.0,<4.5.0 ([95754a3](95754a3c0b26f359cc22acb0c6c423f4334cfaae))
+- Update dependency ansible to >=13.4.0,<13.5.0 ([397049e](397049e9a08fa030b5ef26cae73d8d0bd995c9c8))
+- Update dependency molecule to v26 ([47658c7](47658c78ada74a83c76e00a6225875ef82a7b942))
+
 ## [0.7.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.7.0) - 2026-02-27
 
 [6952c5e](6952c5e3ab26807c8c90801dc531c7a6ab5b536a)...[3b2e87a](3b2e87ab67d62e9789127eecfbe2c47a634f06df)
