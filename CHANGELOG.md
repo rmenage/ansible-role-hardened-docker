@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [0.9.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.9.0) - 2026-03-13
+
+[0d3d8de](0d3d8de3615a8e6cace3922a717382272e0cda1a)...[202f9e7](202f9e7ef19621480ed3524faa06eca5405c56e5)
+
+### Features
+
+- Use Makefile target to generate README with docsible instead of a bash script ([822ccff](822ccffc17a321f4403c5c6105f0882d8271f221))
+
+### Miscellaneous Tasks
+
+- Remove make release script as it has its own project now ([2c719b9](2c719b94799a20dcdf0e077fe45f9caa05a1b7a4))
+
+### Chore
+
+- Update dependency molecule to >=26.3.0,<26.4.0 ([775900f](775900f2b90ce6c3fb463dbee4e8e8ec88ad7d09))
+
 ## [0.8.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.8.0) - 2026-03-03
 
 [6e063ed](6e063ed68e554ef1046a40fe5544a26433ce0223)...[5d760b1](5d760b1b55fc95ec1fe24e26bc2b3b21bcae7102)

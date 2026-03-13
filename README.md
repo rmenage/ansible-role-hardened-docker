@@ -6,8 +6,8 @@
 
 | Field                | Value           |
 |--------------------- |-----------------|
-| Readme update:        | 2026-03-03 |
-| Version:              | v0.8.0 |
+| Readme update:        | 2026-03-13 |
+| Version:              | v0.9.0 |
 
 
 ## role-hardened-docker
