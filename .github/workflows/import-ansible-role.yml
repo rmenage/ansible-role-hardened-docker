@@ -30,18 +30,21 @@ jobs:
           ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
           ANSIBLE_GALAXY_ROLE_DEBUG: ${{ vars.ANSIBLE_GALAXY_ROLE_DEBUG }}
           ANSIBLE_GALAXY_ROLE_NAME: ${{ vars.ANSIBLE_GALAXY_ROLE_NAME }}
-          ROLE_GIT_REPO: $${{ github.repository }}}
+          ROLE_GIT_REPO: ${{ github.repository }}}
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: |
+          PROJECT_NAME="${ROLE_GIT_REPO##*/}"
           echo "repo: $ROLE_GIT_REPO"
           echo "current branch: $BRANCH_NAME"
+          echo "project name: $PROJECT_NAME"
           ansible-galaxy $ANSIBLE_GALAXY_ROLE_DEBUG role info $ANSIBLE_GALAXY_ROLE_NAME
       - name: Import role to Ansible Galaxy
         if: ${{ github.ref_name == env.VERSION_FILE_CONTENT }}
         env:
           ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
           ANSIBLE_GALAXY_ROLE_DEBUG: ${{ vars.ANSIBLE_GALAXY_ROLE_DEBUG }}
-          ROLE_GIT_REPO: $${{ github.repository }}}
+          ROLE_GIT_REPO: ${{ github.repository }}}
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: |
-          ansible-galaxy $ANSIBLE_GALAXY_ROLE_DEBUG role import --branch $BRANCH_NAME rmenage ansible-role-hardened-docker
+          PROJECT_NAME="${ROLE_GIT_REPO##*/}"
+          ansible-galaxy $ANSIBLE_GALAXY_ROLE_DEBUG role import --branch $BRANCH_NAME rmenage $PROJECT_NAME
