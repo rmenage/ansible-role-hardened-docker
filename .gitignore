@@ -1,5 +1,4 @@
 .ansible
 .docsible
 .env
-VERSION
 ansible.cfg
