@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [0.9.2](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.9.2) - 2026-03-18
+
+[3aa424c](3aa424cc3dbad6e8446e9db9de1ed4d89e727cb7)...[7da7ab5](7da7ab5697982932bf588fc4629ad1771ab1ebbe)
+
+### Miscellaneous Tasks
+
+- Fix access to secrets from the "live" environment and update actions for node 24 ([3d7e6d6](3d7e6d68946533ce4ecdd2d918c850f2b7800d0d))
+
 ## [0.9.1](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.9.1) - 2026-03-18
 
 [28b9842](28b9842c82746306ba7ee3d58ee7f2a6c42e50ef)...[c83da10](c83da104eb988a6371b78341be6836f87996434a)
