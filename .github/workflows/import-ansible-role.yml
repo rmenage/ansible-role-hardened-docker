@@ -30,4 +30,4 @@ jobs:
         env:
           ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
         run: |
-          ansible-galaxy role import rmenage ansible-role-hardened-docker
+          ansible-galaxy role import -vvvv rmenage ansible-role-hardened-docker
