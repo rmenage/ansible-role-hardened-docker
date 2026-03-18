@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [0.9.1](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.9.1) - 2026-03-18
+
+[28b9842](28b9842c82746306ba7ee3d58ee7f2a6c42e50ef)...[3635077](3635077ecce72f0e9310b62d8c0d5017601d8b5b)
+
+### Miscellaneous Tasks
+
+- Add Makefile version and clean targets ([da3ae01](da3ae012ac073a09ae2ca6d23efec6ed00a77874))
+- Add github action to import role to galaxy on tag push ([7d87d23](7d87d23218a217a4189f9c26b781d94a0c691488))
+
 ## [0.9.0](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.9.0) - 2026-03-13
 
 [0d3d8de](0d3d8de3615a8e6cace3922a717382272e0cda1a)...[202f9e7](202f9e7ef19621480ed3524faa06eca5405c56e5)
