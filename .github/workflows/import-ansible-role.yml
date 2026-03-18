@@ -3,6 +3,14 @@ on: # yamllint disable-line rule:truthy
   push:
     tags:
       - '*'
+env:
+  ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
+  ANSIBLE_GALAXY_ROLE_DEBUG: ${{ vars.ANSIBLE_GALAXY_ROLE_DEBUG }}
+  ANSIBLE_GALAXY_ROLE_NAME: ${{ vars.ANSIBLE_GALAXY_ROLE_NAME }}
+  ROLE_GIT_REPO: ${{ github.repository }}
+  ROLE_GIT_OWNER: ${{ github.repository_owner }}
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 jobs:
   import-role:
     runs-on: ubuntu-latest
@@ -26,13 +34,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible-core
       - name: Show info about the role
-        env:
-          ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
-          ANSIBLE_GALAXY_ROLE_DEBUG: ${{ vars.ANSIBLE_GALAXY_ROLE_DEBUG }}
-          ANSIBLE_GALAXY_ROLE_NAME: ${{ vars.ANSIBLE_GALAXY_ROLE_NAME }}
-          ROLE_GIT_REPO: ${{ github.repository }}
-          ROLE_GIT_OWNER: ${{ github.repository_owner }}
-          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        if: ${{ github.ref_name != env.VERSION_FILE_CONTENT }}
         run: |
           PROJECT_NAME="${ROLE_GIT_REPO##*/}"
           echo "repo: $ROLE_GIT_REPO"
@@ -42,12 +44,6 @@ jobs:
           ansible-galaxy $ANSIBLE_GALAXY_ROLE_DEBUG role info $ANSIBLE_GALAXY_ROLE_NAME
       - name: Import role to Ansible Galaxy
         if: ${{ github.ref_name == env.VERSION_FILE_CONTENT }}
-        env:
-          ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
-          ANSIBLE_GALAXY_ROLE_DEBUG: ${{ vars.ANSIBLE_GALAXY_ROLE_DEBUG }}
-          ROLE_GIT_REPO: ${{ github.repository }}
-          ROLE_GIT_OWNER: ${{ github.repository_owner }}
-          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: |
           PROJECT_NAME="${ROLE_GIT_REPO##*/}"
           ansible-galaxy $ANSIBLE_GALAXY_ROLE_DEBUG role import --branch $BRANCH_NAME $ROLE_GIT_OWNER $PROJECT_NAME
