@@ -9,6 +9,7 @@ readme_update := $(shell date "+%Y-%m-%d")
 version:
 	@echo "Updating VERSION"
 	echo "$(NEW_VERSION)" > VERSION
+	git add VERSION
 
 # ---- README generation -----------------------------------------------
 .PHONY: readme
