@@ -36,6 +36,7 @@ jobs:
         run: |
           PROJECT_NAME="${ROLE_GIT_REPO##*/}"
           echo "repo: $ROLE_GIT_REPO"
+          echo "owner: $ROLE_GIT_OWNER"
           echo "current branch: $BRANCH_NAME"
           echo "project name: $PROJECT_NAME"
           ansible-galaxy $ANSIBLE_GALAXY_ROLE_DEBUG role info $ANSIBLE_GALAXY_ROLE_NAME
