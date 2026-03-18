@@ -33,8 +33,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ansible-core
-      - name: Show info about the role
-        if: ${{ github.ref_name != env.VERSION_FILE_CONTENT }}
+      - name: Show info about the role on Ansible galaxy before new import
         run: |
           PROJECT_NAME="${ROLE_GIT_REPO##*/}"
           echo "repo: $ROLE_GIT_REPO"
