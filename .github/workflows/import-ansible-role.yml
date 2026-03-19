@@ -35,10 +35,8 @@ jobs:
           pip install ansible-core
       - name: Show info about the role on Ansible galaxy before new import
         run: |
-          PROJECT_NAME="${ROLE_GIT_REPO##*/}"
           ansible-galaxy "$ANSIBLE_GALAXY_ROLE_DEBUG" role info "$ANSIBLE_GALAXY_ROLE_DEBUG" "$ANSIBLE_GALAXY_ROLE_NAME"
       - name: Import role to Ansible Galaxy
         if: ${{ github.ref_name == env.VERSION_FILE_CONTENT }}
         run: |
-          PROJECT_NAME="${ROLE_GIT_REPO##*/}"
-          ansible-galaxy  role import "$ANSIBLE_GALAXY_ROLE_DEBUG" --branch "$BRANCH_NAME" "$ROLE_GIT_OWNER" "$PROJECT_NAME"
+          ansible-galaxy  role import "$ANSIBLE_GALAXY_ROLE_DEBUG" --branch "$BRANCH_NAME" --server https://galaxy.ansible.com/api/ --token "$ANSIBLE_GALAXY_SERVER_GALAXY_TOKEN" "$ROLE_GIT_OWNER" "${ROLE_GIT_REPO##*/}"
