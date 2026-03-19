@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [0.9.3-beta11.1](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.9.3-beta11.1) - 2026-03-19
+
+[bd232c6](bd232c64039991492905b07aa6fd7ffb258652f6)...[e12dc45](e12dc456b4f3c6576bec66e238d749bd79143c36)
+
+### Bug Fixes
+
+- Correct ansible-galaxy role import parameters and use variables instead of hard-coded values ([c71d591](c71d5911700ec487fec9fd2ac5dbdf22a2265728))
+
+### Chore
+
+- Update dependency python to 3.14 ([7591ccc](7591ccc0efc75b856cee577ce5e855fbfc7224ae))
+
 ## [0.9.2](https://gitlab.com/rmenage/ansible-role-hardened-docker/tags/v0.9.2) - 2026-03-18
 
 [3aa424c](3aa424cc3dbad6e8446e9db9de1ed4d89e727cb7)...[7da7ab5](7da7ab5697982932bf588fc4629ad1771ab1ebbe)
