@@ -3,6 +3,14 @@ on: # yamllint disable-line rule:truthy
   push:
     tags:
       - '*'
+env:
+  ANSIBLE_GALAXY_SERVER_GALAXY_TOKEN: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
+  ANSIBLE_GALAXY_ROLE_DEBUG: ${{ vars.ANSIBLE_GALAXY_ROLE_DEBUG }}
+  ANSIBLE_GALAXY_ROLE_NAME: ${{ vars.ANSIBLE_GALAXY_ROLE_NAME }}
+  ROLE_GIT_REPO: ${{ github.repository }}
+  ROLE_GIT_OWNER: ${{ github.repository_owner }}
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 jobs:
   import-role:
     runs-on: ubuntu-latest
@@ -14,7 +22,7 @@ jobs:
           ref: ${{ github.event.repository.default_branch }}
       - name: Capture VERSION content
         id: read_version
-        run: echo "VERSION_FILE_CONTENT=$(cat VERSION)" >> $GITHUB_ENV
+        run: echo "VERSION_FILE_CONTENT=$(cat VERSION)" >> "$GITHUB_ENV"
       - name: Checkout tag source
         uses: actions/checkout@v6  # default ref is the tag that triggered
       - name: Set up Python 3.13
@@ -25,9 +33,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ansible-core
+      - name: Show info about the role on Ansible galaxy before new import
+        run: |
+          PROJECT_NAME="${ROLE_GIT_REPO##*/}"
+          ansible-galaxy "$ANSIBLE_GALAXY_ROLE_DEBUG" role info "$ANSIBLE_GALAXY_ROLE_DEBUG" "$ANSIBLE_GALAXY_ROLE_NAME"
       - name: Import role to Ansible Galaxy
         if: ${{ github.ref_name == env.VERSION_FILE_CONTENT }}
-        env:
-          ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
         run: |
-          ansible-galaxy role import rmenage ansible-role-hardened-docker
+          PROJECT_NAME="${ROLE_GIT_REPO##*/}"
+          ansible-galaxy  role import "$ANSIBLE_GALAXY_ROLE_DEBUG" --branch "$BRANCH_NAME" "$ROLE_GIT_OWNER" "$PROJECT_NAME"
