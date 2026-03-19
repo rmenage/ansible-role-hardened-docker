@@ -39,4 +39,4 @@ jobs:
       - name: Import role to Ansible Galaxy
         #if: ${{ github.ref_name == env.VERSION_FILE_CONTENT }}
         run: |
-          ansible-galaxy  role import "$ANSIBLE_GALAXY_ROLE_DEBUG" --branch "$BRANCH_NAME" --server https://galaxy.ansible.com/api/ --token "$ANSIBLE_GALAXY_SERVER_GALAXY_TOKEN" $ROLE_GIT_OWNER" "${ROLE_GIT_REPO##*/}"
+          ansible-galaxy  role import "$ANSIBLE_GALAXY_ROLE_DEBUG" --branch "$BRANCH_NAME" --server https://galaxy.ansible.com/api/ --token "$ANSIBLE_GALAXY_SERVER_GALAXY_TOKEN" "$ROLE_GIT_OWNER" "${ROLE_GIT_REPO##*/}"
