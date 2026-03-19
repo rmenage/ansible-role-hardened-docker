@@ -41,4 +41,4 @@ jobs:
         #if: ${{ github.ref_name == env.VERSION_FILE_CONTENT }}
         run: |
           export PROJECT_NAME="${ROLE_GIT_REPO##*/}"
-          ansible-galaxy  role import "$ANSIBLE_GALAXY_ROLE_DEBUG" --branch "$BRANCH_NAME" "$ROLE_GIT_OWNER" "${ROLE_GIT_REPO##*/}"
+          ansible-galaxy  role import "$ANSIBLE_GALAXY_ROLE_DEBUG" --branch "$BRANCH_NAME" "$ROLE_GIT_OWNER" ansible-role-hardened-docker
