@@ -20,7 +20,7 @@ variables:
   # Note that if you're using Kubernetes executor, the variable should be set to
   # tcp://localhost:2375 because of how Kubernetes executor connects services
   # to the job container
-  DOCKER_HOST: tcp://docker:2375/
+  # DOCKER_HOST: tcp://docker:2375/
   # When using dind, it's wise to use the overlayfs driver for
   # improved performance.
   DOCKER_DRIVER: overlay2
@@ -37,8 +37,8 @@ linting:
   stage: test
   image: python:3.14
   before_script:
-    - pip install yamllint
-    - pip install ansible-lint
+    - pip install yamllint==1.37.1
+    - pip install ansible-lint==25.8.1
   script:
     - yamllint .
     - ansible-lint .
