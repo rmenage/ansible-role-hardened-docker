@@ -1,4 +1,4 @@
-ansible>=14.2.0,<14.3.0
+ansible>=14.4.0,<14.5.0
 molecule>=26.6.0,<26.7.0
 molecule-plugins[docker]>=26.7.15,<26.8.0
 docsible>=0.8.0,<0.9.0
